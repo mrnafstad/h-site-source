@@ -1,10 +1,10 @@
 <template>
   <div id="quiz">
-    <Header
+    <!--<Header
       :numCorrect="numCorrect"
       :numTotal="numTotal"
       :field="field"
-    />
+    />-->
     <b-container class="bv-example-row">
       <b-row>
         <b-col sm="12" offset="0.5">
@@ -21,14 +21,12 @@
 </template>
 
 <script>
-import Header from '../components/Header.vue'
-import QuestionBox from '../components/QuestionBox.vue'
+import QuestionBox from "../components/QuestionBox.vue";
 
 export default {
-  name: 'Quiz',
+  name: "Quiz",
   components: {
-    Header,
-    QuestionBox
+    QuestionBox,
   },
   data() {
     return {
@@ -36,37 +34,34 @@ export default {
       index: 0,
       numCorrect: 0,
       numTotal: 0,
-    }
+    };
   },
-  props: [
-    'field',
-    'url'
-  ],
+  props: ["field", "url"],
   methods: {
     next() {
-      this.index++
+      this.index++;
     },
     increment(isCorrect) {
       if (isCorrect) {
-        this.numCorrect++
+        this.numCorrect++;
       }
-      this.numTotal++
-    }
+      this.numTotal++;
+    },
   },
-  mounted: function() {
-    console.log(this.url)
+  mounted: function () {
+    console.log(this.url);
     fetch(this.url, {
-      method: 'get'
+      method: "get",
     })
-    .then((response) => {
-      return response.json()
-    })
-    .then((jsonData) => {
-      this.questions = jsonData.results
-    })
-    console.log("Questions fetched")
-  }
-}
+      .then((response) => {
+        return response.json();
+      })
+      .then((jsonData) => {
+        this.questions = jsonData.results;
+      });
+    console.log("Questions fetched");
+  },
+};
 </script>
 
 <style>
@@ -77,5 +72,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
+  margin: auto;
+  width: 100%;
 }
 </style>

@@ -1,101 +1,60 @@
 <template>
- <div @mouseover="active=true" @mouseleave="active=false" id="full">
-  <div id="contents-button" v-if="!active">
-   <button id="menu">Menu</button>
-  </div>
-  <div id="contents" v-if="active">
-   <ul id="content-list"> 
-    <li v-for="(element, idx) in elements" v-bind:key="idx"> 
-      <a @click="changeRoute(element.htmlRef)" class="content-links"> {{ element.name }} </a> 
-    </li>
-   </ul> 
-   </div>
- </div>
+	<div id="menu">
+		<b-dropdown	text="Menu" dropleft size="sm" variant="dark">
+			<!--<template v-slot:button-content>
+				<fa-icon icon="bars" size="2x" style="color: white;" />
+			</template>-->
+			<b-dropdown-item  v-for="route in $router.options.routes" :key="route.path" @click="$router.push(route.path)">
+				<router-link :to="route.path">
+					{{ route.name }}
+				</router-link>
+			</b-dropdown-item>
+		</b-dropdown>
+	</div>
 </template>
 
 <script>
 export default {
+	name: 'Menu',
 	data() {
 		return {
-			elements: [
-				{
-					id: 1,
-					name: "Home",
-					htmlRef: "/"
-				},
-				{
-					id: 2,
-					name: "Todo Manager",
-					htmlRef: "/todos"
-				},
-				{
-					id: 3,
-					name: "Quiz",
-					htmlRef: "/quiz"
-				},
-        {
-          id: 4,
-          name: "Profile",
-          htmlRef: "/profile"
-        },
-        {
-          id: 5,
-          name: "Blogg",
-          htmlRef: "/blog"
-        }],
-			active: false		
+			active: false
 		}
 	},
 	methods: {
-		stuff() {
-			console.log("Stuff")
+		activate() {
 			this.active = !this.active
-		},
-    changeRoute(newRoute) {
-      this.$router.push(newRoute)
-    }
+		}
 	}
 }
 </script>
 
 <style>
-#full {
-  width: 1rem;
-  height: 1rem;
-  position: relative;
+#hamburger {
+	border-radius: 5px;
+	width: 2em;
+	background-color: white;
+	margin: 6px;
 }
-#contents {
-  position: relative;
-  left: 2px;
-  top: 5px;
-  font-size: 1em;
-  height: var(--nav-height);
-  background-color: white;
-  width: 165px;
-  border-radius: 8px;
-  }
-#menu {
-  position: relative;
-  top: 5px;
-  font-size: 1.25em;
-  padding: 9px;
-  height: var(--nav-height);
-  border-radius: 8px;
-  background-color: black;
-  width: 90px;
-  color: blue;
+
+#menu-btn {
+	background-color: black;
+	border-style: none;
+	cursor: pointer;
 }
+
+#menu-list {
+	position: fixed;
+	right: 0em;
+	width: 7em;
+	opacity: 0.6;
+	transition: 0.3s;
+	background-color: black;
+	padding-right: 2em;
+}
+
 ul {
-  text-align: left;
-  text-decoration: none;
-  color: black;
-  background-color: snow;
-  list-style-type: none;
-  font-family: Trebuchet MS, serif;
-  }
-a {
-  color: red;
-  text-decoration: none;
-  cursor: pointer;
+	list-style: none;
 }
+
 </style>

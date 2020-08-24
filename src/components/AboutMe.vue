@@ -1,39 +1,88 @@
 <template>
-	<div id="about">
-		<li v-for="(element, idx) in Om" v-bind:key="idx"> {{ element.desc }} </li>
-	</div>
+  <div id="about">
+    <!--<li v-for="(element, idx) in Om" v-bind:key="idx"> {{ element.desc }} </li>-->
+    <b-container fluid>
+      <b-row class="text-left" align-h="stretch" cols="1">
+        <b-col sm align-self="stretch">
+          <h3>{{ Om[0].title }}</h3>
+          <p v-for="(element, idx) in Om[0].desc" v-bind:key="idx">{{ element }}</p>
+        </b-col>
+        <b-col sm align-self="start">
+          <h3>{{ Om[1].title }}</h3>
+          <p v-for="(element, idx) in Om[1].desc" v-bind:key="idx">{{ element }}</p>
+        </b-col>
+        <b-col sm align-self="start">
+          <h3>{{ Om[2].title }}</h3>
+          <p v-for="(element, idx) in Om[2].desc" v-bind:key="idx">{{ element }}</p>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
-	module.exports = {
-		data: function() {
-			return {
-				Om: [
-				{
-					id: 1,
-					desc: "I'm a 29 year old developer. I got my MSc in astrophysics in the spring of 2019. During post graduation job hunting I branched out and discoverred a passion for web development, particularly frontend."
-				},
-				{ 
-					id: 2,
-					desc: "Therefore I've spent the last year back in the classroom taking courses to become a better over-all programmer."
-				},
-				{
-					id: 3,
-					desc: "Some of the courses I've taken covered topics like functional programming, Java, SQL, NoSQL (MongoDB), OpenMP and MPI. On the side I've tried to learn the Vue framework, which I'm building this website with."
-				}],
-			};
-		}
-	};
+module.exports = {
+  data: function () {
+    return {
+      Om: [
+        {
+          id: 1,
+          title: "About me",
+          desc: [
+            "After finnishing my MSc in Astrophysics at UiO I started to play around with HTML and css while looking for a job.",
+            "Quite early I knew that this was something I wanted to master and work with, so I reached out to a close friend in the business and asked what I should learn.",
+            "He recommended learning a frontend framework, and as a fan he recommended Vuejs.",
+            "Thus, last summer I started to learn Vuejs and decided to take an extra year at university taking programming classes to get a more fundamental understanding of programming.",
+            "A little info about this site: It's built with Vuejs, using vuex, vue-router and the bootstrap-vue library. In the backend I have Firestore. You need to sign in to use the todo manager and profile view, and this is a feature reserved for myself at the time being. But feel free to have a look around!",
+          ],
+        },
+        {
+          id: 2,
+          title: "Degrees",
+          desc: [
+            "MSc, Astronomy (Cosmology) at UiO",
+            "BSc, Physics (Astronomy) at UiO",
+          ],
+        },
+        {
+          id: 3,
+          title: "The Last Year",
+          desc: [
+            "Functional Programming (scheme) - UiO",
+            "OOP (Java) - UiO",
+            "Databases and data modelling (relational databases, SQL) - UiO",
+            "Databasesystems (SQL, MongoDB++) - UiO",
+            "High Performance Computing (C) - UiO",
+            "Introductory Computertechnology - UiO",
+            "Vuejs + libraries",
+            "Firebase Firestore",
+          ],
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style>
-	li {
-		padding: 5px;
-		list-style-type: none;
-	}
-	#about {
-		width: 2;
-		margin-left: auto;
-		margin-right: auto;
-	}
+li {
+  padding: 5px;
+  list-style-type: none;
+}
+#about {
+  width: 2;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<style scoped>
+p {
+  margin-bottom: 0.25em;
+  font-style: italic;
+}
+
+h3 {
+  font-size: 130%;
+}
 </style>

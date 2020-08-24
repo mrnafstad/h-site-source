@@ -1,19 +1,45 @@
 <template>
-	<div>
-		<b-nav>
-			<b-nav-item disabled><b>Quiz app</b></b-nav-item>
-			<b-nav-item disabled>Counter: {{ numCorrect }}/ {{ numTotal }} </b-nav-item>
-			<b-nav-item disabled>Field: {{ field }} </b-nav-item>
-		</b-nav>
-	</div>
+  <div id="header">
+    <b-row align-v="center">
+      <b-col>
+        <SignLogIn />
+      </b-col>
+      <b-col>
+        <router-link to="/">Home</router-link>
+      </b-col>
+      <b-col>
+        <Menu />
+      </b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>
+import Menu from "./Menu.vue";
+import SignLogIn from "./SignLogIn.vue";
+
 export default {
-	props: [
-		'numCorrect',
-		'numTotal',
-		'field'
-	]
-}
+  name: "Header",
+  components: {
+    Menu,
+    SignLogIn,
+  },
+};
 </script>
+
+<style>
+#header {
+  background-color: black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.align-items-center {
+  width: 100%;
+}
+
+a.router-link-active:hover {
+  color: blue;
+  text-decoration: none;
+}
+</style>
